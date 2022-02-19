@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/home/main_food_page.dart';
 
-void main() {
+void main()
+{
   runApp(const MyApp());
 }
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       home: MainFoodPage(),
     );
   }
+
 }
 
 
