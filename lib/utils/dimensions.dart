@@ -33,5 +33,9 @@ static double radius15  = screenHeight/54.66;
 
 static double iconSize24 = screenHeight / 34.16;
 
+// list view size
+static double listViewImgSize = screenHeight/3.43;
+static double  listViewTextContSize = screenWidth/3.9;
+
 
 }
