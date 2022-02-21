@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
+import 'package:food_delivery/widgets/app_column.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/icon_and_text_widget.dart';
 import 'package:food_delivery/widgets/small_text.dart';
@@ -29,7 +30,7 @@ class _FoodPageBodyState extends State<FoodPageBody>
     pageController.addListener(() {
       setState(() {
         _currPageValue = pageController.page!;
-      //  print("Current value is +" + _currPageValue.toString());
+        //  print("Current value is +" + _currPageValue.toString());
       });
     });
   }
@@ -64,8 +65,8 @@ class _FoodPageBodyState extends State<FoodPageBody>
             },
           ),
         ),
-         /// dots
-         DotsIndicator(
+        /// dots
+        DotsIndicator(
           dotsCount: 5,
           position: _currPageValue,
           decorator: DotsDecorator(
@@ -81,23 +82,19 @@ class _FoodPageBodyState extends State<FoodPageBody>
           margin: EdgeInsets.only(left: Dimensions.width30, ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
+            children:
+            [
               BigText(text: "Popular"),
               SizedBox(width: Dimensions.width10,),
-              Container(
-                margin: EdgeInsets.only(bottom: 3),
-                child: BigText(text: ".",color: Colors.black26,),
-              ),
+              Container(margin: EdgeInsets.only(bottom: 3), child: BigText(text: ".",color: Colors.black26,),),
               SizedBox(width: Dimensions.width10,),
-              Container(
-                margin: EdgeInsets.only(bottom: 2),
-                child: SmallText(text: "Food paring",),
-              )
+              Container(margin: EdgeInsets.only(bottom: 2), child: SmallText(text: "Food paring",),)
             ],
           ),
         ),
         /// List of food and images
-        ListView.builder(
+        ListView.builder
+          (
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemCount: 10,
@@ -125,11 +122,11 @@ class _FoodPageBodyState extends State<FoodPageBody>
                       child: Container(
                         height: Dimensions.listViewTextContSize,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(Dimensions.radius20),
-                            bottomRight: Radius.circular(Dimensions.radius20)
-                          ),
-                          color: Colors.white
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(Dimensions.radius20),
+                                bottomRight: Radius.circular(Dimensions.radius20)
+                            ),
+                            color: Colors.white
                         ),
                         child: Padding(
                           padding: EdgeInsets.only(left: Dimensions.width10,right: Dimensions.width10),
@@ -172,17 +169,17 @@ class _FoodPageBodyState extends State<FoodPageBody>
     //print("  index and currpagevalue is $index ..... ${_currPageValue} ");
     if( index == _currPageValue.floor())
     {
-       var currScale = 1-( _currPageValue-index)*(1-_scaleFactor);
-       var currTrans = _height*(1-currScale)/2;
-       matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0,currTrans,0);
+      var currScale = 1-( _currPageValue-index)*(1-_scaleFactor);
+      var currTrans = _height*(1-currScale)/2;
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0,currTrans,0);
     }
     else if( index == _currPageValue.floor()+1 )
-      {
-        var currScale = _scaleFactor+(_currPageValue-index+1)*(1-_scaleFactor);
-        var currTrans = _height*(1-currScale)/2;
-        matrix = Matrix4.diagonal3Values(1, currScale, 1);
-        matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0,currTrans,0);
-      }
+    {
+      var currScale = _scaleFactor+(_currPageValue-index+1)*(1-_scaleFactor);
+      var currTrans = _height*(1-currScale)/2;
+      matrix = Matrix4.diagonal3Values(1, currScale, 1);
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0,currTrans,0);
+    }
     else if( index == _currPageValue.floor()-1 )
     {
       var currScale = 1-( _currPageValue-index)*(1-_scaleFactor);
@@ -223,58 +220,29 @@ class _FoodPageBodyState extends State<FoodPageBody>
               height: Dimensions.pageViewTextContainer,
               margin: EdgeInsets.only(left: Dimensions.width30, right: Dimensions.width30, bottom: Dimensions.height30),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius20),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0xFFe8e8e8),
-                    blurRadius: 5.0,
-                    offset: Offset(0,5)
-                  ),
-                  BoxShadow(
-                    color: Colors.white,
-                    offset: Offset(-5,0),
-                  ),
-                  BoxShadow(
-                    color: Colors.white,
-                    offset: Offset(5,0),
-                  )
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color(0xFFe8e8e8),
+                        blurRadius: 5.0,
+                        offset: Offset(0,5)
+                    ),
+                    BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(-5,0),
+                    ),
+                    BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(5,0),
+                    )
 
-                ]
+                  ]
 
               ),
               child: Container(
                 padding: EdgeInsets.only(top: Dimensions.height15, left: 15, right: 15, ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BigText(text: "Chinese Side"),
-                    SizedBox(height: Dimensions.height10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Wrap(children: List.generate(5, (index) => Icon(Icons.star,color: AppColors.mainColor,size: 15,))),
-                        SizedBox(width: 10,),
-                        SmallText(text: "4.5"),
-                        SizedBox(width: 10,),
-                        SmallText(text: "1287"),
-                        SizedBox(width: 10,),
-                        SmallText(text: "comments")
-
-                      ],
-                    ),
-                    SizedBox(height: Dimensions.height20,),
-                    Row(
-                      children:
-                      [
-                       IconAndTextWidget(icon: Icons.circle_sharp, text: "Normal" , iconColor: AppColors.iconColor1),
-                       IconAndTextWidget(icon: Icons.location_on, text: "1.7" , iconColor: AppColors.mainColor),
-                       IconAndTextWidget(icon: Icons.access_time_filled_rounded, text: "32" , iconColor: AppColors.iconColor2)
-                    ],
-                    )
-
-                  ],
-                ),
+                child: AppColumn(text: 'Chinees food',),
               ),
             ),
           ),
