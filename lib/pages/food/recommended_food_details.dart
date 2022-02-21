@@ -15,6 +15,7 @@ class RecommenedFoodDetails extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+
             toolbarHeight: 70,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,7 +44,7 @@ class RecommenedFoodDetails extends StatelessWidget {
             ),
             pinned: true,
             backgroundColor: AppColors.yellowColor,
-            expandedHeight: 300,
+            expandedHeight: Dimensions.screenHeight/2.73,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
                 "assets/image/food3.png",
